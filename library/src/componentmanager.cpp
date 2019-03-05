@@ -24,7 +24,7 @@
 
 // local includes
 #include "componentmanager.h"
-#include "modelstate.h"
+#include "wrappedobject.h"
 #include "modelcomponent.h"
 
 /*#include "modelcentroidalmomentum.h"
@@ -44,12 +44,12 @@
 #include "modelsetinitworldframe.h"
 #include "modelupdatestate.h"*/
 
-using namespace mexWBIComponent;
+using namespace mexComponent;
 
 ComponentManager *ComponentManager::componentManager = 0;
 
-ModelState     *ComponentManager::modelState = 0;
-ModelComponent *ComponentManager::currentComponent = 0;
+WrappedObject    *ComponentManager::obj = 0;
+ModelComponent   *ComponentManager::currentComponent = 0;
 
 /*ModelCentroidalMomentum    *ComponentManager::modelCentroidalMomentum = 0;
 ModelCoriolisBiasForces    *ComponentManager::modelCoriolisBiasForces = 0;
@@ -101,7 +101,7 @@ ComponentManager::ComponentManager(const char *pstrRobotName)
 
 void ComponentManager::initialize(const char *pstrRobotName)
 {
-  modelState = ModelState::getInstance(pstrRobotName);
+  obj = WrappedObject::getInstance(pstrRobotName);
   initComponents();
   initComponentList();
 }
@@ -149,7 +149,7 @@ void ComponentManager::initComponentList()
 void ComponentManager::cleanup()
 {
   deleteComponents();
-  ModelState::deleteInstance();
+  WrappedObject::deleteInstance();
 #ifdef DEBUG
   mexPrintf("ComponentManager destructed.\n");
 #endif

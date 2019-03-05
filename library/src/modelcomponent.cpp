@@ -24,16 +24,16 @@
 // local includes
 #include "modelcomponent.h"
 
-using namespace mexWBIComponent;
+using namespace mexComponent;
 
-ModelState *ModelComponent::modelState = 0;
+WrappedObject *ModelComponent::obj = 0;
 //wbi::iWholeBodyModel *ModelComponent::robotModel = 0;
 
 //wbi::Frame ModelComponent::wf_H_b = wbi::Frame();
 
 ModelComponent::ModelComponent(const unsigned int nArgs, const unsigned int nAltArgs, const unsigned int nRets) : numArgs(nArgs), numRets(nRets), numAltArgs(nAltArgs)
 {
-  modelState = ModelState::getInstance();
+  obj = WrappedObject::getInstance();
   //robotModel = modelState->robotModel();
 }
 

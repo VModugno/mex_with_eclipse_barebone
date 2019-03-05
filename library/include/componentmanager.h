@@ -29,9 +29,9 @@
 // local includes
 
 // forward declarations
-namespace mexWBIComponent
+namespace mexComponent
 {
-  class ModelState;
+  class WrappedObject;
   class ModelComponent;
   // ------------------------------------
   // kinematic/dynamic function classes:
@@ -56,7 +56,7 @@ namespace mexWBIComponent
   class ModelUpdateState;*/
 }
 
-namespace mexWBIComponent
+namespace mexComponent
 {
   struct cmp_str : public std::binary_function<const char*, const char*, bool>
   {
@@ -94,8 +94,8 @@ namespace mexWBIComponent
 
       static ComponentManager *componentManager;
 
-      static ModelState     *modelState;
-      static ModelComponent *currentComponent;
+      static WrappedObject    *obj;
+      static ModelComponent   *currentComponent;
 
       /*static ModelCentroidalMomentum    *modelCentroidalMomentum;
       static ModelCoriolisBiasForces    *modelCoriolisBiasForces;

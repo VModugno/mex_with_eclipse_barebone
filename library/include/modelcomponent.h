@@ -26,9 +26,9 @@
 // library includes
 
 // local includes
-#include "modelstate.h"
+#include "wrappedobject.h"
 
-namespace mexWBIComponent
+namespace mexComponent
 {
   class ModelComponent {
     public:
@@ -54,7 +54,7 @@ namespace mexWBIComponent
       bool reorderMatrixInRowMajor(const double *srcMat, double *destMat, int nRows = 3, int nCols = 3);
       bool reorderMatrixInColMajor(const double *srcMat, double *destMat, int nRows = 3, int nCols = 3);
 
-      static ModelState *modelState;
+      static WrappedObject *obj;
       //static wbi::iWholeBodyModel *robotModel;
 
       // frame transformation (from base to world frame):

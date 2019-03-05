@@ -27,7 +27,7 @@
 #include "componentmanager.h"
 
 // namespaces
-using namespace mexWBIComponent;
+using namespace mexComponent;
 
 // global variables
 /**
