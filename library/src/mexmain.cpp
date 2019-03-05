@@ -13,9 +13,14 @@
  *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+ * MERCHANTABILITY or FITNESS FOR A P
+ *
+ * ARTICULAR PURPOSE. See the GNU General
  * Public License for more details
  */
+
+/** this wrapper is made in way that at the beginning you need to initialize your objects and then you can recall them using the
+ *  associate components through the component manager**/
 
 // global includes
 #include <iostream>
@@ -51,6 +56,7 @@ void mexWbmExit(void)
 
 //=========================================================================================================================
 // Entry point function to library
+                 // # output //output arg  // # input    //  input args
 void mexFunction(int nlhs, mxArray **plhs, int nrhs, const mxArray **prhs)
 {
   //DEBUGGING

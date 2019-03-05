@@ -32,12 +32,13 @@
 
 std::string int_array_to_string(double int_array[], double size_of_array);
 
-namespace mexWBIComponent
+namespace mexComponent
 {
-  class ModelState
+  class WrappedObject
   {
     public:
-      static ModelState *getInstance(const char* pstrRobotName = "icubGazeboSim");
+	  static WrappedObject *getInstance();
+      static WrappedObject *getInstance(const char* inputTowrappedObj);
       static void initModelState();
 
       /**
@@ -66,10 +67,10 @@ namespace mexWBIComponent
       void vb(double *vb_t);
       void g(double *g_t);*/
 
-      ~ModelState();
+      ~WrappedObject();
 
     private:
-      ModelState(const char *pstrRobotName);
+      WrappedObject(const char * inputTowrappedObj);
 
       //static void initRobotModel(const wbi::IDList &jntIDList);
       //static void initState();
@@ -87,7 +88,7 @@ namespace mexWBIComponent
       */
       //static void robotModelFromURDF(const char *pstrURDFileName);
 
-      static ModelState *modelState;
+      static WrappedObject *obj;
       //static wbi::iWholeBodyModel *robotWBIModel;
 
       //static size_t nDof;

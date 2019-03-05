@@ -73,10 +73,24 @@ const char *ComponentManager::pcstrInitURDFKey = "model-initialize-urdf";
 
 std::map<const char*, ModelComponent*, cmp_str> ComponentManager::componentList;
 
-ComponentManager *ComponentManager::getInstance(const char *pstrRobotName)
+ComponentManager *ComponentManager::getInstance(const char *inputTowrappedObj)
 {
   if (componentManager == 0) {
-    componentManager = new ComponentManager(pstrRobotName);
+    componentManager = new ComponentManager(inputTowrappedObj);
+  }
+#ifdef DEBUG
+  mexPrintf("ComponentManager initialized.\n");
+#endif
+
+  return componentManager;
+}
+
+// here i define the default value for Getinstance
+ComponentManager *ComponentManager::getInstance()
+{
+  char * inputTowrappedObj = new char();
+  if (componentManager == 0) {
+    componentManager = new ComponentManager(inputTowrappedObj);
   }
 #ifdef DEBUG
   mexPrintf("ComponentManager initialized.\n");
@@ -91,24 +105,24 @@ void ComponentManager::deleteInstance()
 }
 
 
-ComponentManager::ComponentManager(const char *pstrRobotName)
+ComponentManager::ComponentManager(const char *inputTowrappedObj)
 {
 #ifdef DEBUG
   mexPrintf("ComponentManager constructed.\n");
 #endif
-  initialize(pstrRobotName);
+  initialize(inputTowrappedObj);
 }
 
-void ComponentManager::initialize(const char *pstrRobotName)
+void ComponentManager::initialize(const char *inputTowrappedObj)
 {
-  obj = WrappedObject::getInstance(pstrRobotName);
+  obj = WrappedObject::getInstance(inputTowrappedObj);
   initComponents();
   initComponentList();
 }
 
 void ComponentManager::initComponents()
 {
-  /*modelCentroidalMomentum    = ModelCentroidalMomentum::getInstance();
+  /*modelCentroidalMomentum  = ModelCentroidalMomentum::getInstance();
   modelCoriolisBiasForces    = ModelCoriolisBiasForces::getInstance();
   modelDJdq                  = ModelDJdq::getInstance();
   modelForwardKinematics     = ModelForwardKinematics::getInstance();
@@ -128,7 +142,7 @@ void ComponentManager::initComponents()
 
 void ComponentManager::initComponentList()
 {
-  /*componentList["centroidal-momentum"]   = modelCentroidalMomentum;
+  /*componentList["centroidal-momentum"] = modelCentroidalMomentum;
   componentList["coriolis-forces"]       = modelCoriolisBiasForces;
   componentList["dJdq"]                  = modelDJdq;
   componentList["forward-kinematics"]    = modelForwardKinematics;

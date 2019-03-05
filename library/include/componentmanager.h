@@ -68,7 +68,9 @@ namespace mexComponent
   class ComponentManager
   {
     public:
-      static ComponentManager *getInstance(const char *pstrRobotName = "icub");
+	  static ComponentManager *getInstance();
+	  // the inputTowrappedObj change given what is required by the object constructor
+      static ComponentManager *getInstance(const char *inputTowrappedObj);
 
       bool processFunctionCall(int nlhs, mxArray **plhs, int nrhs, const mxArray **prhs);
 
@@ -80,9 +82,9 @@ namespace mexComponent
       ~ComponentManager();
 
     private:
-      ComponentManager(const char *pstrRobotName);
+      ComponentManager(const char *inputTowrappedObj);
 
-      static void initialize(const char *pstrRobotName);
+      static void initialize(const char *inputTowrappedObj);
       static void reinitialize(const mxArray **prhs);
       static void initComponents();
       static void initComponentList();

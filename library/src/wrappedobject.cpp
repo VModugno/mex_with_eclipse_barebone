@@ -27,16 +27,16 @@
 //#include <yarp/os/ResourceFinder.h>
 
 // local includes
-#include "modelstate.h"
+#include "wrappedobject.h"
 
-using namespace mexWBIComponent;
+using namespace mexComponent;
 
-ModelState *ModelState::modelState = 0;
+WrappedObject *WrappedObject::obj = 0;
 //wbi::iWholeBodyModel *ModelState::robotWBIModel = 0;
 
 //size_t ModelState::nDof = 0;
-char   *ModelState::pstrCurrRobotName = 0;
-const char *ModelState::pcstrLocalName = "mexWBModel";
+char   *WrappedObject::pstrCurrRobotName = 0;
+const char *WrappedObject::pcstrLocalName = "mexWBModel";
 
 //double ModelState::svb[6]   = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
 //double ModelState::sg[3]    = {0.0f, 0.0f, 0.0f};
@@ -66,9 +66,9 @@ bool isRobotNameAFile(const char *pstrRobotName)
   return false;
 }
 
-ModelState::ModelState(const char *pstrRobotName)
+WrappedObject::WrappedObject(const char *inputTowrappedObj)
 {
-  if (isRobotNameAFile(pstrRobotName)) {
+  if (isRobotNameAFile(inputTowrappedObj)) {
 	// constructor function here
     //robotModelFromURDF(pstrRobotName);
     return;
@@ -103,7 +103,7 @@ ModelState::ModelState(const char *pstrRobotName)
   nDof = robotWBIModel->getDoFs();
 }*/
 
-ModelState::~ModelState()
+WrappedObject::~WrappedObject()
 {
 #ifdef DEBUG
   mexPrintf("ModelState destructor called.\n");
@@ -135,17 +135,24 @@ ModelState::~ModelState()
 #endif
 }
 
-ModelState *ModelState::getInstance(const char *pstrRobotName)
+// here i make the hypotesis that the model objects are already constructed
+WrappedObject *WrappedObject::getInstance()
 {
-  if (modelState == 0) {
-    modelState = new ModelState(pstrRobotName);
-  }
-  return modelState;
+  return obj;
 }
 
-void ModelState::deleteInstance()
+// here i call this instance to create wrapped object and return them that the model objects are already constructed
+WrappedObject *WrappedObject::getInstance(const char *inputTowrappedObj)
 {
-  deleteObject(&modelState);
+  if (obj == 0) {
+	  obj = new WrappedObject(inputTowrappedObj);
+  }
+  return obj;
+}
+
+void WrappedObject::deleteInstance()
+{
+  deleteObject(&obj);
   #ifdef DEBUG
     mexPrintf("ModelState deleted.\n");
   #endif
