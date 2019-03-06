@@ -73,18 +73,6 @@ const char *ComponentManager::pcstrInitURDFKey = "model-initialize-urdf";
 
 std::map<const char*, ModelComponent*, cmp_str> ComponentManager::componentList;
 
-ComponentManager *ComponentManager::getInstance(const char *inputTowrappedObj)
-{
-  if (componentManager == 0) {
-    componentManager = new ComponentManager(inputTowrappedObj);
-  }
-#ifdef DEBUG
-  mexPrintf("ComponentManager initialized.\n");
-#endif
-
-  return componentManager;
-}
-
 // here i define the default value for Getinstance
 ComponentManager *ComponentManager::getInstance()
 {
@@ -98,6 +86,19 @@ ComponentManager *ComponentManager::getInstance()
 
   return componentManager;
 }
+
+ComponentManager *ComponentManager::getInstance(const char *inputTowrappedObj)
+{
+  if (componentManager == 0) {
+    componentManager = new ComponentManager(inputTowrappedObj);
+  }
+#ifdef DEBUG
+  mexPrintf("ComponentManager initialized.\n");
+#endif
+
+  return componentManager;
+}
+
 
 void ComponentManager::deleteInstance()
 {

@@ -31,7 +31,8 @@
 
 using namespace mexComponent;
 
-WrappedObject *WrappedObject::obj = 0;
+WrappedObject *WrappedObject::obj   = 0;
+stubObj *    WrappedObject::content = 0;
 //wbi::iWholeBodyModel *ModelState::robotWBIModel = 0;
 
 //size_t ModelState::nDof = 0;
@@ -68,14 +69,14 @@ bool isRobotNameAFile(const char *pstrRobotName)
 
 WrappedObject::WrappedObject(const char *inputTowrappedObj)
 {
-  if (isRobotNameAFile(inputTowrappedObj)) {
+  if (inputTowrappedObj == NULL) {
 	// constructor function here
-    //robotModelFromURDF(pstrRobotName);
+    content = new stubObj();
     return;
   }
   // constructor function here
   // else, load the model from the yarp-WBI directory ...
-  //robotModel(pstrRobotName);
+  content = new stubObj(inputTowrappedObj);
 }
 
 /*void ModelState::initState()

@@ -29,6 +29,7 @@
 //#include <wbi/iWholeBodyModel.h>
 
 // local includes
+#include "stubObj.h";
 
 std::string int_array_to_string(double int_array[], double size_of_array);
 
@@ -89,6 +90,7 @@ namespace mexComponent
       //static void robotModelFromURDF(const char *pstrURDFileName);
 
       static WrappedObject *obj;
+      static stubObj       *content;
       //static wbi::iWholeBodyModel *robotWBIModel;
 
       //static size_t nDof;
