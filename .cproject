@@ -30,6 +30,7 @@
 								<option id="gnu.c.compiler.option.debugging.level.1966174164" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.990567250" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="MATLAB_MEX_FILE"/>
+									<listOptionValue builtIn="false" value="DEBUG=1"/>
 								</option>
 								<option id="gnu.c.compiler.option.include.paths.1751166076" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="/home/vale/MATLAB/2017b/extern/include"/>
@@ -45,7 +46,7 @@
 									<listOptionValue builtIn="false" value="/home/vale/MATLAB/2017b/extern/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/library/include}&quot;"/>
 								</option>
-								<option id="gnu.cpp.compiler.option.other.pic.1869787081" superClass="gnu.cpp.compiler.option.other.pic" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+								<option id="gnu.cpp.compiler.option.other.pic.1869787081" name="Position Independent Code (-fPIC)" superClass="gnu.cpp.compiler.option.other.pic" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1351058289" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.895159384" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker">

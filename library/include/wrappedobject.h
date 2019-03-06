@@ -29,7 +29,7 @@
 //#include <wbi/iWholeBodyModel.h>
 
 // local includes
-#include "stubObj.h";
+#include "stubObj.h"
 
 std::string int_array_to_string(double int_array[], double size_of_array);
 
@@ -68,6 +68,8 @@ namespace mexComponent
       void vb(double *vb_t);
       void g(double *g_t);*/
 
+      double * getAllDataFromContent();
+
       ~WrappedObject();
 
     private:
@@ -91,6 +93,7 @@ namespace mexComponent
 
       static WrappedObject *obj;
       static stubObj       *content;
+      static double        *contentData;
       //static wbi::iWholeBodyModel *robotWBIModel;
 
       //static size_t nDof;

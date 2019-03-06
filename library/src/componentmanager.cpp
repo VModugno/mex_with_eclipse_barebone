@@ -19,6 +19,7 @@
 
 // global includes
 #include <map>
+#include <iostream>
 
 // library includes
 
@@ -27,8 +28,8 @@
 #include "wrappedobject.h"
 #include "modelcomponent.h"
 
-/*#include "modelcentroidalmomentum.h"
-#include "modelcoriolisbiasforces.h"
+#include "function1.h"
+/*#include "modelcoriolisbiasforces.h"
 #include "modeldjdq.h"
 #include "modelforwardkinematics.h"
 #include "modelgeneralizedbiasforces.h"
@@ -51,6 +52,7 @@ ComponentManager *ComponentManager::componentManager = 0;
 WrappedObject    *ComponentManager::obj = 0;
 ModelComponent   *ComponentManager::currentComponent = 0;
 
+Function1        *ComponentManager::function1 = 0;
 /*ModelCentroidalMomentum    *ComponentManager::modelCentroidalMomentum = 0;
 ModelCoriolisBiasForces    *ComponentManager::modelCoriolisBiasForces = 0;
 ModelDJdq                  *ComponentManager::modelDJdq = 0;
@@ -123,7 +125,8 @@ void ComponentManager::initialize(const char *inputTowrappedObj)
 
 void ComponentManager::initComponents()
 {
-  /*modelCentroidalMomentum  = ModelCentroidalMomentum::getInstance();
+  function1                  = Function1::getInstance();
+  /*  = ModelCentroidalMomentum::getInstance();
   modelCoriolisBiasForces    = ModelCoriolisBiasForces::getInstance();
   modelDJdq                  = ModelDJdq::getInstance();
   modelForwardKinematics     = ModelForwardKinematics::getInstance();
@@ -143,6 +146,9 @@ void ComponentManager::initComponents()
 
 void ComponentManager::initComponentList()
 {
+
+	componentList["function1"]           = function1;
+
   /*componentList["centroidal-momentum"] = modelCentroidalMomentum;
   componentList["coriolis-forces"]       = modelCoriolisBiasForces;
   componentList["dJdq"]                  = modelDJdq;
@@ -175,6 +181,7 @@ void ComponentManager::deleteComponents()
 #ifdef DEBUG
   mexPrintf("Delete all components...\n");
 #endif
+  Function1::deleteInstance();
   /*ModelCentroidalMomentum::deleteInstance();
   ModelCoriolisBiasForces::deleteInstance();
   ModelDJdq::deleteInstance();
@@ -250,10 +257,10 @@ bool ComponentManager::executeComputation(ModelComponent *pActiveComp, int nlhs,
   pActiveComp->allocateReturnSpace(nlhs, plhs);
 
   // execute the computation of the specified kinematic/dynamic function:
-  if (nrhs == (int)(1 + pActiveComp->numAltArguments())) {
+  //if (nrhs == (int)(1 + pActiveComp->numAltArguments())) {
     // perform optimized computation ...
-    return pActiveComp->computeFast(nrhs, prhs);
-  }
+    //  return pActiveComp->computeFast(nrhs, prhs);
+  //}
   // else, perform normal computation ...
   return pActiveComp->compute(nrhs, prhs);
 }

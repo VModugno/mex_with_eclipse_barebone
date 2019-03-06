@@ -12,13 +12,22 @@
 #include <string>
 
 class stubObj{
+	public:
+		stubObj();
+		stubObj(std::string name);
 
-	stubObj();
-	stubObj(std::string name);
+		void function1(std::string data);
+		void function2(std::string data);
+		void function3(std::string data);
 
-	void function1(std::string data);
-	void function2(std::string data);
-	void function3(std::string data);
+		// set random variables
+		void setVariables();
+		// return each of them
+		double getVariables(std::string name);
+
+		double alpha;
+		double beta;
+		double gamma;
 
 
 };

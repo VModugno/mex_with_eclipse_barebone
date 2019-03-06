@@ -31,12 +31,14 @@
 
 using namespace mexComponent;
 
-WrappedObject *WrappedObject::obj   = 0;
-stubObj *    WrappedObject::content = 0;
+WrappedObject *WrappedObject::obj       = 0;
+// this is the obejct wrapped by the current class
+stubObj *    WrappedObject::content     = 0;
+ double *    WrappedObject::contentData = 0;
 //wbi::iWholeBodyModel *ModelState::robotWBIModel = 0;
 
 //size_t ModelState::nDof = 0;
-char   *WrappedObject::pstrCurrRobotName = 0;
+char   *WrappedObject::pstrCurrRobotName  = 0;
 const char *WrappedObject::pcstrLocalName = "mexWBModel";
 
 //double ModelState::svb[6]   = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
@@ -46,37 +48,36 @@ const char *WrappedObject::pcstrLocalName = "mexWBModel";
 
 //wbi::Frame ModelState::wf_H_b = wbi::Frame();
 
-bool isRobotNameAFile(const char *pstrRobotName)
-{
-  std::string fn = pstrRobotName;
-  size_t len = fn.size();
-
-  if (len > 4) {
-    // extensions with length of 3 or 4 are only allowed:
-    size_t pos = fn.rfind('.', len-4);
-    if (pos != std::string::npos) {
-      // if '.' was found ...
-      std::string ext = fn.substr(pos+1, len - pos);
-      len = ext.size();
-      if ( (len > 2) && (len < 5) ) {
-        return true;
-      }
-    }
-  }
-  // else, it is not a file name ...
-  return false;
-}
 
 WrappedObject::WrappedObject(const char *inputTowrappedObj)
 {
+  contentData = new double[3];
   if (inputTowrappedObj == NULL) {
 	// constructor function here
     content = new stubObj();
     return;
   }
   // constructor function here
-  // else, load the model from the yarp-WBI directory ...
   content = new stubObj(inputTowrappedObj);
+}
+
+
+double * WrappedObject::getAllDataFromContent(){
+
+
+	this->content->setVariables();
+	double a = this->content->getVariables("alpha");
+	double b = this->content->getVariables("beta");
+	double c = this->content->getVariables("gamma");
+
+
+	contentData[0] = a;
+	contentData[1] = b;
+	contentData[2] = c;
+
+	return contentData;
+
+
 }
 
 /*void ModelState::initState()

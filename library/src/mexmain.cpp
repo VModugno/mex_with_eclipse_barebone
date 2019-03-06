@@ -59,8 +59,7 @@ void mexWbmExit(void)
                  // # output //output arg  // # input    //  input args
 void mexFunction(int nlhs, mxArray **plhs, int nrhs, const mxArray **prhs)
 {
-  //DEBUGGING
-  std::cout<<"hello world"<<std::endl;
+
   #ifdef DEBUG
 		  mexPrintf("mex function entry point\n");
   #endif

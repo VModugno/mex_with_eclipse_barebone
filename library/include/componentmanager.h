@@ -33,6 +33,7 @@ namespace mexComponent
 {
   class WrappedObject;
   class ModelComponent;
+  class Function1;
   // ------------------------------------
   // kinematic/dynamic function classes:
   // ------------------------------------
@@ -99,6 +100,7 @@ namespace mexComponent
       static WrappedObject    *obj;
       static ModelComponent   *currentComponent;
 
+      static Function1 * function1;
       /*static ModelCentroidalMomentum    *modelCentroidalMomentum;
       static ModelCoriolisBiasForces    *modelCoriolisBiasForces;
       static ModelDJdq                  *modelDJdq;
