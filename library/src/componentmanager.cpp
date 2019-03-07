@@ -80,7 +80,9 @@ ComponentManager *ComponentManager::getInstance()
 {
   char * inputTowrappedObj = new char();
   if (componentManager == 0) {
+	std::cout << "a" << std::endl;
     componentManager = new ComponentManager(inputTowrappedObj);
+    std::cout << "b" << std::endl;
   }
 #ifdef DEBUG
   mexPrintf("ComponentManager initialized.\n");
@@ -120,7 +122,9 @@ void ComponentManager::initialize(const char *inputTowrappedObj)
 {
   obj = WrappedObject::getInstance(inputTowrappedObj);
   initComponents();
+  std::cout << "0"<<std::endl;
   initComponentList();
+  std::cout << "1"<<std::endl;
 }
 
 void ComponentManager::initComponents()

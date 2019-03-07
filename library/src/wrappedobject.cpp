@@ -19,6 +19,7 @@
  */
 
 // global includes
+#include <iostream>
 
 // library includes
 //#include <iDynTree/ModelIO/URDFDofsImport.h>
@@ -54,10 +55,12 @@ WrappedObject::WrappedObject(const char *inputTowrappedObj)
   contentData = new double[3];
   if (inputTowrappedObj == NULL) {
 	// constructor function here
+	std::cout << "no input for wrapped object" << std::endl;
     content = new stubObj();
     return;
   }
   // constructor function here
+  std::cout << "input for wrapped object" << std::endl;
   content = new stubObj(inputTowrappedObj);
 }
 

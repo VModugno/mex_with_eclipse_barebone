@@ -77,15 +77,21 @@ void mexFunction(int nlhs, mxArray **plhs, int nrhs, const mxArray **prhs)
       if ( !mxIsChar(prhs[1]) ) {
         mexErrMsgIdAndTxt("MATLAB:mexatexit:inputNotString", "Initialization must include component and a robot name.");
       }
+      std::cout <<"2.0"<<std::endl;
       pCompManager = ComponentManager::getInstance(mxArrayToString(prhs[1]));
+      std::cout <<"2"<<std::endl;
     }
     else {
-      // initialize with default configuration ...
+      // initialize with default configuration ... (first time call)
+      std::cout <<"2.0.1"<<std::endl;
       pCompManager = ComponentManager::getInstance();
+      std::cout <<"2.0.2"<<std::endl;
     }
     // register function to call on Matlab close / mex clear
     // to proper deallocate all the memory
+    std::cout <<"2.0.3"<<std::endl;
     mexAtExit(mexWbmExit);
+    std::cout <<"2.0.4"<<std::endl;
     return;
   }
   // else, the ComponentManager is already initialized ...
