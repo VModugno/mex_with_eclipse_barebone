@@ -1,4 +1,4 @@
-function vqT_lnk = wbm_forwardKinematics(varargin)
+function ret = mex_function1(varargin)
     % WBM_FORWARDKINEMATICS computes the forward kinematic transformation vector to a specified
     % link (frame) w.r.t. the current joint configuration q_j.
     %
@@ -20,7 +20,7 @@ function vqT_lnk = wbm_forwardKinematics(varargin)
     %
     %switch nargin
     %    case 1
-            vqT_lnk = Mex_Mpc_Engine('function1', varargin{1});
+            ret = Mex_Mpc_Engine('function1', varargin{1});
     %    case 4
     %        vqT_lnk = mexWholeBodyModel('forward-kinematics', reshape(varargin{1}, 9, 1), varargin{2}, varargin{3}, varargin{4});
     %    otherwise

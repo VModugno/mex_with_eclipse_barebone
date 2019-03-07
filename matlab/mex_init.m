@@ -20,6 +20,6 @@ function mex_init(varargin)
     %    case 1
     %        mexWholeBodyModel('model-initialize', varargin{1});
     %    otherwise
-            error('wbm_modelInitialize: %s\n', wbm_errorMsg());
+    %        error('wbm_modelInitialize: %s\n', wbm_errorMsg());
     %end
 end
